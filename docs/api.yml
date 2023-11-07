@@ -168,6 +168,13 @@ components:
           properties:
             author:
               nullable: true
+    updateBookAuthor:
+      type: object
+      properties:
+        bookId:
+          type: string
+        authorId:
+          type: string
     Book:
       type: object
       properties:
