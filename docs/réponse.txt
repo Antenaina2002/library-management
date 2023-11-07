@@ -6,3 +6,7 @@ mais sans les autres propriétés telles que bookName et authorName comme dans l
 ii.	Dans quel cas, UpdateBookAuthor devrait avoir les propriétés de CrupdateBook et de Author ?
 => UpdateBookAuthor devrait avoir les propriétés de CrupdateBook et de Author lorsqu'on souhaite mettre à jour à la fois 
    les propriétés spécifiques du livre et de l'auteur en même temps que leur association.
+
+a.	Pourquoi les paginations sont-elles nécessaires ? 
+=>  Les paginations sont nécessaires pour l'efficacité de gestion des grandes quantités de données.
+
