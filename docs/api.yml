@@ -11,7 +11,11 @@ paths:
       tags:
         - Books
       summary: Get all books
-      description: The returned books are ordered by updated datetime.
+      description: |
+        The returned books are ordered by updated datetime.
+        Supports pagination with the following query parameters:
+        - page: The page number for pagination 1 by default
+        - pageSize: The number of items per page for pagination 50 by default
       operationId: getBooks
       parameters:
         - in: query
@@ -20,6 +24,18 @@ paths:
           required: false
           schema:
             type: string
+        - in: query
+          name: page
+          description: The page number for pagination
+          schema:
+            type: integer
+            default: 1
+        - in: query
+          name: pageSize
+          description: The number of items per page for pagination
+          schema:
+            type: integer
+            default: 50
         - in: query
           name: releaseDateMin
           description: |
