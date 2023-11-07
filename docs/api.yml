@@ -94,6 +94,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Book'
+  /books/authors:
+    put:
+      tags:
+        - Books
+      summary: Update authors of multiple books
+      operationId: updateBooksAuthors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateBookAuthor'
+      responses:
+        200:
+          description: The list of updated books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
   /authors:
     get:
       summary: Get all authors
@@ -168,7 +190,7 @@ components:
           properties:
             author:
               nullable: true
-    updateBookAuthor:
+    UpdateBookAuthor:
       type: object
       properties:
         bookId:
