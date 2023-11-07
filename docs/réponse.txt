@@ -1,0 +1,8 @@
+i.	Pourquoi UpdateBookAuthor possède uniquement l’identifiant de CrupdateBook et l’identifiant de Author, 
+mais sans les autres propriétés telles que bookName et authorName comme dans leur composant respectif ? 
+=>  l'objet UpdateBookAuthor ne contient que les identifiants de CrupdateBook et d'Author,
+    car celà simplifie la structure de l'objet et réduit la quantitée de donnée nécessaire pour effectuer la mise à jour.
+
+ii.	Dans quel cas, UpdateBookAuthor devrait avoir les propriétés de CrupdateBook et de Author ?
+=> UpdateBookAuthor devrait avoir les propriétés de CrupdateBook et de Author lorsqu'on souhaite mettre à jour à la fois 
+   les propriétés spécifiques du livre et de l'auteur en même temps que leur association.
