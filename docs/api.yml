@@ -108,7 +108,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Book'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
   /books/authors:
     put:
       tags:
@@ -128,9 +135,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
   /authors:
     get:
       summary: Get all authors
