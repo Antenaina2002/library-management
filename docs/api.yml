@@ -165,7 +165,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 properties:
                   status:
                     $ref: '#/components/schemas/Status'
@@ -191,7 +191,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
+                type: object
                 properties:
                   status:
                     $ref: '#/components/schemas/Status'
@@ -218,7 +218,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Author'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Author'
 components:
   schemas:
     Status:
