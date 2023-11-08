@@ -80,7 +80,6 @@ paths:
                   status:
                     $ref: '#/components/schemas/Status'
                   body:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Book'
   /books/{bookId}/authors/{authorId}:
@@ -113,7 +112,6 @@ paths:
                   status:
                     $ref: '#/components/schemas/Status'
                   body:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Book'
   /books/authors:
@@ -140,7 +138,6 @@ paths:
                   status:
                     $ref: '#/components/schemas/Status'
                   body:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Book'
   /authors:
@@ -196,7 +193,6 @@ paths:
                   status:
                     $ref: '#/components/schemas/Status'
                   body:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Author'
   /authors/{aId}:
@@ -223,7 +219,6 @@ paths:
                   status:
                     $ref: '#/components/schemas/Status'
                   body:
-                    type: array
                     items:
                       $ref: '#/components/schemas/Author'
 components:
@@ -283,6 +278,33 @@ components:
       enum:
         - M
         - F
+    ImportAuthor:
+      type: object
+      properties:
+        authorName:
+          type: string
+        sex:
+          $ref: '#/components/schemas/Sex'
+    ImportBook:
+      type: object
+      properties:
+        bookName:
+          type: string
+        author:
+          type: string
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+          enum:
+            - ROMANCE
+            - COMEDY
+            - OTHER
+        releaseDate:
+          type: string
+          format: date
+        idAuthor:
+          type: string
   parameters:
     queryPagination:
       in: query
