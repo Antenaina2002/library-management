@@ -247,3 +247,19 @@ components:
       enum:
         - M
         - F
+  parameters:
+    queryPagination:
+      in: query
+      name: page
+      description: Pagination's page number
+      schema:
+        type: integer
+        default: 1
+    pathPagination:
+      in: path
+      name: page
+      description: The page number of pagination
+      schema:
+        type: integer
+        default: 1
+      required: true
