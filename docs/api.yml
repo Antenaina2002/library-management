@@ -49,9 +49,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
     put:
       tags:
         - Books
@@ -70,9 +75,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
   /books/{bookId}/authors/{authorId}:
     put:
       tags:
