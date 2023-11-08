@@ -189,6 +189,13 @@ paths:
                 $ref: '#/components/schemas/Author'
 components:
   schemas:
+    Status:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     CrupdateBook:
       allOf:
         - $ref: '#/components/schemas/Book'
