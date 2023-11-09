@@ -234,6 +234,8 @@ paths:
                       $ref: '#/components/schemas/Author'
     put:
       summary: Create or update authors
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: crupdateAuthors
       tags:
         - Authors
@@ -260,6 +262,8 @@ paths:
   /authors/{aId}:
     delete:
       summary: Delete an author
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: deleteAuthor
       tags:
         - Authors
