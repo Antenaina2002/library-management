@@ -399,18 +399,18 @@ paths:
     post:
       tags:
         - Visitors
-      summary: Emprunter un livre
+      summary: borrowing a book
       operationId: borrowBook
       parameters:
         - name: visitorId
           in: path
-          description: ID du visiteur empruntant le livre
+          description: visitor Id borrowing the book
           schema:
             type: integer
           required: true
         - name: bookId
           in: path
-          description: ID du livre à emprunter
+          description: book Id to borrow
           schema:
             type: string
           required: true
@@ -421,7 +421,7 @@ paths:
               $ref: '#/components/schemas/BorrowBook'
       responses:
         200:
-          description: Le livre a été emprunté avec succès
+          description: book borrowed successfully
           content:
             application/json:
               schema:
@@ -435,18 +435,18 @@ paths:
     post:
       tags:
         - Visitors
-      summary: Retourner un livre
+      summary: Returning a book
       operationId: returnBook
       parameters:
         - name: visitorId
           in: path
-          description: ID du visiteur retournant le livre
+          description: visitor Id returning the book
           schema:
             type: integer
           required: true
         - name: bookId
           in: path
-          description: ID du livre à retourner
+          description: book Id to return
           schema:
             type: string
           required: true
@@ -457,7 +457,7 @@ paths:
               $ref: '#/components/schemas/ReturnBook'
       responses:
         200:
-          description: Le livre a été retourné avec succès
+          description: book returned successfully
           content:
             application/json:
               schema:
@@ -550,6 +550,8 @@ components:
         releaseDate:
           type: string
           format: date
+        isBorrowed:
+          type: boolean
     Author:
       type: object
       properties:
