@@ -444,6 +444,21 @@ components:
           type: string
         authorId:
           type: string
+    BorrowBook:
+      type: object
+      properties:
+        visitor:
+          $ref: '#/components/schemas/Visitor'
+        book:
+          $ref: '#/components/schemas/Book'
+    ReturnBook:
+      type: object
+      properties:
+        visitor:
+          $ref: '#/components/schemas/Visitor'
+        book:
+          $ref: '#/components/schemas/Book'
+          
     Book:
       type: object
       properties:
