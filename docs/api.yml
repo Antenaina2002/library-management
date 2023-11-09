@@ -400,6 +400,8 @@ paths:
       tags:
         - Visitors
       summary: borrowing a book
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: borrowBook
       parameters:
         - name: visitorId
@@ -422,42 +424,6 @@ paths:
       responses:
         200:
           description: book borrowed successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    $ref: '#/components/schemas/Status'
-                  body:
-                    type: string
-  /visitors/{visitorId}/return/{bookId}:
-    post:
-      tags:
-        - Visitors
-      summary: Returning a book
-      operationId: returnBook
-      parameters:
-        - name: visitorId
-          in: path
-          description: visitor Id returning the book
-          schema:
-            type: integer
-          required: true
-        - name: bookId
-          in: path
-          description: book Id to return
-          schema:
-            type: string
-          required: true
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ReturnBook'
-      responses:
-        200:
-          description: book returned successfully
           content:
             application/json:
               schema:
