@@ -11,6 +11,9 @@ paths:
       tags:
         - Books
       summary: Get all books
+      security:
+        - adminAuth: []  # Operation accessible to administrators
+        - visitorAuth: []  # Operation accessible to visitors
       description: |
         The returned books are ordered by updated datetime.
         Supports pagination with the following query parameters:
