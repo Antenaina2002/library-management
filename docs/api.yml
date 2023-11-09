@@ -395,6 +395,42 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Visitor'
+  /visitors/{visitorId}/borrow/{bookId}:
+    post:
+      tags:
+        - Visitors
+      summary: Emprunter un livre
+      operationId: borrowBook
+      parameters:
+        - name: visitorId
+          in: path
+          description: ID du visiteur empruntant le livre
+          schema:
+            type: integer
+          required: true
+        - name: bookId
+          in: path
+          description: ID du livre à emprunter
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BorrowBook'
+      responses:
+        200:
+          description: Le livre a été emprunté avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: string
 components:
 
   securitySchemes:
@@ -458,7 +494,6 @@ components:
           $ref: '#/components/schemas/Visitor'
         book:
           $ref: '#/components/schemas/Book'
-          
     Book:
       type: object
       properties:
