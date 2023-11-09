@@ -431,6 +431,42 @@ paths:
                     $ref: '#/components/schemas/Status'
                   body:
                     type: string
+  /visitors/{visitorId}/return/{bookId}:
+    post:
+      tags:
+        - Visitors
+      summary: Retourner un livre
+      operationId: returnBook
+      parameters:
+        - name: visitorId
+          in: path
+          description: ID du visiteur retournant le livre
+          schema:
+            type: integer
+          required: true
+        - name: bookId
+          in: path
+          description: ID du livre à retourner
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnBook'
+      responses:
+        200:
+          description: Le livre a été retourné avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: string
 components:
 
   securitySchemes:
