@@ -303,7 +303,26 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Visitor'
-      
+  /visitors/{visitorId}:
+    get:
+      summary: Get a specific visitor by ID
+      operationId: getVisitorById
+      tags:
+        - Visitors
+      parameters:
+        - name: visitorId
+          in: path
+          description: ID of the visitor to retrieve
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: The visitor with the specified ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visitor'
 components:
   schemas:
     Status:
