@@ -173,6 +173,8 @@ paths:
       tags:
         - Import
       summary: Import books
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: importBooks
       requestBody:
         content:
