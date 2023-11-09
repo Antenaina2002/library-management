@@ -140,6 +140,33 @@ paths:
                   body:
                     items:
                       $ref: '#/components/schemas/Book'
+  /books/import:
+       post:
+         tags:
+           - Import
+         summary: Import books
+         operationId: importBooks
+         requestBody:
+           content:
+             application/json:
+               schema:
+                 type: array
+                 items:
+                   $ref: '#/components/schemas/ImportBook'
+         responses:
+           200:
+             description: The list of imported books
+             content:
+               application/json:
+                 schema:
+                   type: object
+                   properties:
+                     status:
+                       $ref: '#/components/schemas/Status'
+                     body:
+                       type: array
+                       items:
+                         $ref: '#/components/schemas/Book'
   /authors:
     get:
       summary: Get all authors
