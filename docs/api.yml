@@ -522,6 +522,19 @@ components:
           $ref: '#/components/schemas/Visitor'
         book:
           $ref: '#/components/schemas/Book'
+    BookBorrowHistory:
+      type: object
+      properties:
+        bookId:
+          type: string
+        borrowedBy:
+          $ref: "#/components/schemas/Visitor"
+        borrowedDate:
+          type: string
+          format: date-time
+        returnedDate:
+          type: string
+          format: date-time
     ReturnBook:
       type: object
       properties:
@@ -603,6 +616,10 @@ components:
           type: string
           enum:
             - vst12345
+        borrowHistory:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookBorrowHistory'
   parameters:
     queryPagination:
       in: query
