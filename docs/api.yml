@@ -265,6 +265,10 @@ paths:
               type: array
               items:
                 $ref: '#/components/schemas/ImportAuthor'
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema:
+              type: string
+              format: binary
       responses:
         200:
           description: The list of imported authors
