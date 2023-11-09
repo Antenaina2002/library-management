@@ -11,6 +11,9 @@ paths:
       tags:
         - Books
       summary: Get all books
+      security:
+        - adminAuth: []  # Operation accessible to administrators
+        - visitorAuth: []  # Operation accessible to visitors
       description: |
         The returned books are ordered by updated datetime.
         Supports pagination with the following query parameters:
@@ -174,6 +177,9 @@ paths:
   /authors:
     get:
       summary: Get all authors
+      security:
+        - adminAuth: []  # Operation accessible to administrators
+        - visitorAuth: []  # Operation accessible to visitors
       operationId: getAuthors
       tags:
         - Authors
@@ -390,6 +396,20 @@ paths:
                     items:
                       $ref: '#/components/schemas/Visitor'
 components:
+
+  securitySchemes:
+    adminAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Utilisé par les administrateurs pour s'authentifier.
+
+    visitorAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Utilisé par les visiteurs pour s'authentifier.
+      
   schemas:
     Status:
       type: object
