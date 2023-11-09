@@ -292,6 +292,8 @@ paths:
       tags:
         - Import
       summary: Import authors
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: importAuthors
       requestBody:
         content:
