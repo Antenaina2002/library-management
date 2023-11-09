@@ -326,7 +326,7 @@ paths:
                     $ref: '#/components/schemas/Status'
                   body:
                     items:
-                      $ref: '#/components/schemas/Author'
+                      $ref: '#/components/schemas/Visitor'
   /visitors/{visitorId}:
     get:
       summary: Get a specific visitor by ID
@@ -346,7 +346,49 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Visitor'
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Visitor'
+  /visitors/search:
+    get:
+      summary: search visitors by name or reference
+      operationId: searchVisitorsByNameOrReference
+      tags:
+        - Visitors
+      parameters:
+        - name: visitorName
+          in: query
+          description: Name of the visitor to search
+          schema:
+            type: string
+          required: false
+        - name: reference
+          in: query
+          description: Reference of the visitor to search
+          schema:
+            type: string
+            enum:
+              - vst12345
+          required: false
+      responses:
+        200:
+          description: The list of visitors matching the specified name or reference
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Visitor'
 components:
   schemas:
     Status:
@@ -453,7 +495,7 @@ components:
         reference:
           type: string
           enum:
-            - vstxxxxx
+            - vst12345
   parameters:
     queryPagination:
       in: query
