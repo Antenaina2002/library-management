@@ -177,6 +177,9 @@ paths:
   /authors:
     get:
       summary: Get all authors
+      security:
+        - adminAuth: []  # Operation accessible to administrators
+        - visitorAuth: []  # Operation accessible to visitors
       operationId: getAuthors
       tags:
         - Authors
