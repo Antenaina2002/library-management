@@ -248,6 +248,33 @@ paths:
                   body:
                     items:
                       $ref: '#/components/schemas/Author'
+  /authors/import:
+       post:
+         tags:
+           - Import
+         summary: Import authors
+         operationId: importAuthors
+         requestBody:
+           content:
+             application/json:
+               schema:
+                 type: array
+                 items:
+                   $ref: '#/components/schemas/ImportAuthor'
+         responses:
+           200:
+             description: The list of imported authors
+             content:
+               application/json:
+                 schema:
+                   type: object
+                   properties:
+                     status:
+                       $ref: '#/components/schemas/Status'
+                     body:
+                       type: array
+                       items:
+                         $ref: '#/components/schemas/Author'
 components:
   schemas:
     Status:
