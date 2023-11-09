@@ -92,6 +92,8 @@ paths:
       tags:
         - Books
       summary: Attach an author to a book
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: attachAuthorToBook
       parameters:
         - name: bookId
