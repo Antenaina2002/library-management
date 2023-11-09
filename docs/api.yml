@@ -303,6 +303,30 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Visitor'
+    put:
+      summary: Create a new visitor
+      operationId: createVisitor
+      tags:
+        - Visitors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visitor'
+      responses:
+        200:
+          description: Created visitor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    items:
+                      $ref: '#/components/schemas/Author'
   /visitors/{visitorId}:
     get:
       summary: Get a specific visitor by ID
