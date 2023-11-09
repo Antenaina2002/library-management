@@ -64,6 +64,8 @@ paths:
       tags:
         - Books
       summary: Create or update a list of books
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: crupdateBooks
       requestBody:
         content:
