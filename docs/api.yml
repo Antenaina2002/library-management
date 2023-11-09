@@ -144,6 +144,12 @@ components:
       in: header
       description: Utilisé par les administrateurs pour s'authentifier.
 
+    visitorAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Utilisé par les visiteurs pour s'authentifier.
+
   schemas:
     Book:
       type: object
