@@ -400,6 +400,8 @@ paths:
       tags:
         - Visitors
       summary: Emprunter un livre
+      security:
+        - adminAuth: []  # Operation accessible to administrators
       operationId: borrowBook
       parameters:
         - name: visitorId
