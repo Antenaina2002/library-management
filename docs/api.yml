@@ -283,6 +283,27 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Author'
+  /visitors:
+    get:
+      summary: Get all visitors
+      operationId: getVisitors
+      tags:
+        - Visitors
+      responses:
+        200:
+          description: The list of visitors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Visitor'
+      
 components:
   schemas:
     Status:
