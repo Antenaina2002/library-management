@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Library API
-  version: 1.1.0
+  version: 1.10.0
   description: STD22001
 servers:
   - url: https://library.com
@@ -141,32 +141,36 @@ paths:
                     items:
                       $ref: '#/components/schemas/Book'
   /books/import:
-       post:
-         tags:
-           - Import
-         summary: Import books
-         operationId: importBooks
-         requestBody:
-           content:
-             application/json:
-               schema:
-                 type: array
-                 items:
-                   $ref: '#/components/schemas/ImportBook'
-         responses:
-           200:
-             description: The list of imported books
-             content:
-               application/json:
-                 schema:
-                   type: object
-                   properties:
-                     status:
-                       $ref: '#/components/schemas/Status'
-                     body:
-                       type: array
-                       items:
-                         $ref: '#/components/schemas/Book'
+    post:
+      tags:
+        - Import
+      summary: Import books
+      operationId: importBooks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportBook'
+          application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: The list of imported books
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Book'
   /authors:
     get:
       summary: Get all authors
@@ -249,32 +253,32 @@ paths:
                     items:
                       $ref: '#/components/schemas/Author'
   /authors/import:
-       post:
-         tags:
-           - Import
-         summary: Import authors
-         operationId: importAuthors
-         requestBody:
-           content:
-             application/json:
-               schema:
-                 type: array
-                 items:
-                   $ref: '#/components/schemas/ImportAuthor'
-         responses:
-           200:
-             description: The list of imported authors
-             content:
-               application/json:
-                 schema:
-                   type: object
-                   properties:
-                     status:
-                       $ref: '#/components/schemas/Status'
-                     body:
-                       type: array
-                       items:
-                         $ref: '#/components/schemas/Author'
+    post:
+      tags:
+        - Import
+      summary: Import authors
+      operationId: importAuthors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ImportAuthor'
+      responses:
+        200:
+          description: The list of imported authors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    $ref: '#/components/schemas/Status'
+                  body:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Author'
 components:
   schemas:
     Status:
