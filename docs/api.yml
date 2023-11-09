@@ -292,6 +292,18 @@ components:
           type: integer
         message:
           type: string
+    ImportBookFromExcel:
+      type: object
+      properties:
+        excelFile:
+          type: string
+          format: binary
+    ImportBookFromJSON:
+      type: object
+      properties:
+        jsonFile:
+          type: string
+          format: binary
     CrupdateBook:
       allOf:
         - $ref: '#/components/schemas/Book'
