@@ -379,6 +379,15 @@ components:
           format: date
         idAuthor:
           type: string
+    Visitor:
+      type: object
+      properties:
+        id:
+          type: integer
+        visitorName:
+          type: string
+        reference:
+          type: string
   parameters:
     queryPagination:
       in: query
