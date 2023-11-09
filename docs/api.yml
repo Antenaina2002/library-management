@@ -388,6 +388,8 @@ components:
           type: string
         reference:
           type: string
+          enum:
+            - vstxxxxx
   parameters:
     queryPagination:
       in: query
