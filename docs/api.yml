@@ -14,6 +14,9 @@ paths:
       tags:
         - Books
       summary: Get all books
+      security:
+        - adminAuth: []  # Operation accessible to administrators
+        - visitorAuth: []  # Operation accessible to visitors
       description: The returned books are ordered by updated datetime.
       operationId: getBooks
       parameters:
