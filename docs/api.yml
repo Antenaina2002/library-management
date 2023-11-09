@@ -137,6 +137,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Author'
 components:
+  securitySchemes:
+    adminAuth:
+      type: apiKey
+      name: Authorization
+      in: header
+      description: Utilisé par les administrateurs pour s'authentifier.
+
   schemas:
     Book:
       type: object
