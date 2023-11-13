@@ -5,9 +5,6 @@ info:
   description: STD22001
 servers:
   - url: https://library.com
-tags:
-  - Books
-  - Authors
 paths:
   /books:
     get:
@@ -44,15 +41,15 @@ paths:
             type: string
             format: date
           required: false
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
       responses:
         200:
-          description: The list of filtered books
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
+          $ref: '#/components/responses/BookList_200'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
     put:
       tags:
         - Books
@@ -64,10 +61,52 @@ paths:
             schema:
               type: array
               items:
-                $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/CrupdateBook'
       responses:
         200:
-          description: The list of created or updated books
+          $ref: '#/components/responses/BookList_200'
+        400:
+          $ref: '#/components/responses/400'
+  /books/{bookId}/authors/{authorId}:
+    put:
+      tags:
+        - Books
+      summary: Associate a single book to an author
+      operationId: associateBookAuthor
+      parameters:
+        - name: bookId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: authorId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: The updated book
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+  /books/authors:
+    put:
+      tags:
+        - Books
+      summary: Associate some books to some authors
+      operationId: associateBooksAuthors
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateBook'
+      responses:
+        200:
+          description: List of updated books
           content:
             application/json:
               schema:
@@ -122,6 +161,30 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Author'
+  /authors/page/{page}/size/{size}:
+    get:
+      tags:
+        - Authors
+      parameters:
+        - in: path
+          name: page
+          schema:
+            type: integer
+          required: true
+        - in: path
+          name: size
+          schema:
+            type: integer
+          required: true
+      responses:
+        200:
+          description: The author deleted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
   /authors/{aId}:
     delete:
       summary: Delete an author
@@ -143,40 +206,88 @@ paths:
               schema:
                 $ref: '#/components/schemas/Author'
 components:
-  securitySchemes:
-    adminAuth:
-      type: apiKey
-      name: Authorization
-      in: header
-      description: Utilisé par les administrateurs pour s'authentifier.
-
-    visitorAuth:
-      type: apiKey
-      name: Authorization
-      in: header
-      description: Utilisé par les visiteurs pour s'authentifier.
-
+  parameters:
+    Page:
+      in: query
+      name: page
+      schema:
+        type: integer
+        default: 1
+      required: false
+    PageSize:
+      in: query
+      name: pageSize
+      schema:
+        type: integer
+        default: 30
+      required: false
+  responses:
+    BookList_200:
+      description: List of books
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BookListBody'
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BadRequestBody'
+    403:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenBody'
   schemas:
+    ResponseStatus:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 200
+        message:
+          type: string
+          example: OK
+    ResponseBodyTemplate:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ResponseStatus'
+        body:
+          type: object
+    BadRequestBody:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBodyTemplate'
+      example:
+        status:
+          code: 400
+          message: BAD REQUEST
+        body: { }
+    ForbiddenBody:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBodyTemplate'
+      example:
+        status:
+          code: 403
+          message: FORBIDDEN
+        body: { }
+    BookListBody:
+      allOf:
+        - $ref: '#/components/schemas/ResponseBodyTemplate'
+        - properties:
+            body:
+              type: array
+              items:
+                $ref: '#/components/schemas/Book'
     Book:
       type: object
       properties:
-        id:
-          type: string
-        bookName:
-          type: string
         author:
           $ref: '#/components/schemas/Author'
-        pageNumbers:
-          type: integer
-        topic:
-          type: string
-          enum:
-            - ROMANCE
-            - COMEDY
-            - OTHER
-        releaseDate:
-          type: string
-          format: date
+      allOf:
+        - $ref: '#/components/schemas/CrupdateBook'
     Author:
       type: object
       properties:
@@ -191,3 +302,31 @@ components:
       enum:
         - M
         - F
+    CrupdateBook:
+      type: object
+      properties:
+        id:
+          type: string
+        bookName:
+          type: string
+        pageNumbers:
+          type: integer
+        topic:
+          type: string
+          enum:
+            - ROMANCE
+            - COMEDY
+            - OTHER
+        releaseDate:
+          type: string
+          format: date
+    UpdateBook:
+      type: object
+      properties:
+        bookId:
+          type: string
+        authorId:
+          type: string
+      required:
+        - bookId
+        - authorId
