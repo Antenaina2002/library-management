@@ -171,7 +171,7 @@ paths:
   /books/import:
     post:
       tags:
-        - Import
+        - Books
       summary: Import books
       security:
         - adminAuth: []  # Operation accessible to administrators
@@ -292,7 +292,7 @@ paths:
   /authors/import:
     post:
       tags:
-        - Import
+        - Authors
       summary: Import authors
       security:
         - adminAuth: []  # Operation accessible to administrators
