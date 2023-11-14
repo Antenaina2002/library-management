@@ -494,6 +494,12 @@ components:
         application/json:
           schema:
             type: object
+    404:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
       
   schemas:
     Status:
