@@ -234,6 +234,14 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        500:
+          $ref: '#/components/responses/500'
     put:
       summary: Create or update authors
       security:
@@ -261,6 +269,14 @@ paths:
                   body:
                     items:
                       $ref: '#/components/schemas/Author'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        500:
+          $ref: '#/components/responses/500'
   /authors/{aId}:
     delete:
       summary: Delete an author
