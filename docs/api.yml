@@ -488,18 +488,36 @@ components:
         application/json:
           schema:
             type: object
+            properties:
+              status:
+                $ref: '#/components/schemas/Status'
     403:
       description: forbidden request
       content:
         application/json:
           schema:
             type: object
+            properties:
+              status:
+                $ref: '#/components/schemas/Status'
     404:
       description: Not found
       content:
         application/json:
           schema:
             type: object
+            properties:
+              status:
+                $ref: '#/components/schemas/Status'
+    500:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                $ref: '#/components/schemas/Status'
       
   schemas:
     Status:
