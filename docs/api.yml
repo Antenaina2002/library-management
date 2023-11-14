@@ -342,6 +342,14 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Visitor'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        500:
+          $ref: '#/components/responses/500'
     put:
       summary: Create a new visitor
       operationId: createVisitor
@@ -366,6 +374,14 @@ paths:
                   body:
                     items:
                       $ref: '#/components/schemas/Visitor'
+        400:
+          $ref: '#/components/responses/400'
+        403:
+          $ref: '#/components/responses/403'
+        404:
+          $ref: '#/components/responses/404'
+        500:
+          $ref: '#/components/responses/500'
   /visitors/{visitorId}:
     get:
       summary: Get a specific visitor by ID
