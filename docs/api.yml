@@ -488,6 +488,12 @@ components:
         application/json:
           schema:
             type: object
+    403:
+      description: forbidden request
+      content:
+        application/json:
+          schema:
+            type: object
       
   schemas:
     Status:
