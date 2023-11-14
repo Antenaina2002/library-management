@@ -480,6 +480,14 @@ components:
       name: Authorization
       in: header
       description: Utilisé par les visiteurs pour s'authentifier.
+
+  responses:
+    400:
+      description: bad request
+      content:
+        application/json:
+          schema:
+            type: object
       
   schemas:
     Status:
